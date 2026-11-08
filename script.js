@@ -1,3 +1,7 @@
+const gameScreen = document.getElementById("game-screen");
+const endScreen = document.getElementById("end-screen");
+endScreen.style.display = "none";
+
 const wakeUpBtn = document.getElementById("wake-up-btn");
 
 let xLimit = window.innerWidth - wakeUpBtn.getBoundingClientRect().width;
@@ -5,6 +9,8 @@ let yLimit = window.innerHeight - wakeUpBtn.getBoundingClientRect().height;
 
 const topEyelid = document.querySelector(".eyelid-top");
 const bottomEyelid = document.querySelector(".eyelid-bottom");
+
+const endTime = document.getElementById("end-time");
 
 const topEyelidAnim = topEyelid.animate(
     [{ transform: "translateY(-100%)" }, { transform: "translateY(0)" }],
@@ -31,13 +37,16 @@ function randomizeEyelidClose() {
     bottomEyelidAnim.effect.updateTiming({ duration: closingMs });
 }
 
-wakeUpBtn.addEventListener("pointerdown", () => {
+function randomizeBtnPos() {
     const newX = Math.floor(Math.random() * (xLimit + 1));
     const newY = Math.floor(Math.random() * (yLimit + 1));
 
     wakeUpBtn.style.left = `${newX}px`;
     wakeUpBtn.style.top = `${newY}px`;
+}
 
+wakeUpBtn.addEventListener("pointerdown", () => {
+    randomizeBtnPos();
     randomizeEyelidClose();
 });
 
@@ -53,6 +62,8 @@ function startTimer() {
     let startTime = Date.now();
     let currentTime = 0;
 
+    stopwatch.textContent = "00:00:00";
+
     gameTimer = setInterval(() => {
         currentTime = Date.now() - startTime;
 
@@ -64,12 +75,26 @@ function startTimer() {
     }, 1000);
 }
 
+// To be removed once main menu is added
 startTimer();
 
-const endScreen = document.getElementById("end-screen");
-endScreen.style.display = "none";
-
 topEyelidAnim.onfinish = () => {
-    endScreen.style.display = "block";
     stopTimer();
+    endTime.textContent = stopwatch.textContent;
+    
+    gameScreen.style.display = "none";
+    endScreen.style.display = "block";
 };
+
+function startNewGame() {
+    gameScreen.style.display = "block";
+    endScreen.style.display = "none";
+
+    startTimer();
+    randomizeBtnPos();
+    randomizeEyelidClose();
+}
+
+for (const btn of document.getElementsByClassName("new-game-btn")) {
+    btn.addEventListener("pointerdown", startNewGame);
+}

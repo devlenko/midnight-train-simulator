@@ -30,7 +30,11 @@ body {
     rotate: 180deg;
 }
 
+#end-time {
+    display: block;
+}
+
 /* Temporary */
-h2, p, span {
+#stopwatch {
     color: white;
 }
