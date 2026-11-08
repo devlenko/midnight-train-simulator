@@ -4,8 +4,33 @@
     padding: 0;
 }
 
+body {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
 #wake-up-btn {
     position: absolute;
     left: 0;
     top: 0;
+}
+
+.eyelid {
+    width: 100vw;
+    height: 65vh;
+    position: absolute;
+    z-index: -1;
+
+    background-image: radial-gradient(ellipse max(2000px, 140vw) 20vh at bottom, transparent 50%, rgba(0, 0, 0, 0.8) 65%, black 75%);
+}
+
+.eyelid-bottom {
+    bottom: 0;
+    rotate: 180deg;
+}
+
+/* Temporary */
+h2, p, span {
+    color: white;
 }
