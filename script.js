@@ -1,6 +1,8 @@
+const titleScreen = document.getElementById("title-screen");
 const gameScreen = document.getElementById("game-screen");
 const endScreen = document.getElementById("end-screen");
-endScreen.style.display = "none";
+
+titleScreen.style.display = "block";
 
 const wakeUpBtn = document.getElementById("wake-up-btn");
 
@@ -19,6 +21,7 @@ const topEyelidAnim = topEyelid.animate(
         direction: "normal",
     }
 );
+topEyelidAnim.pause();
 const bottomEyelidAnim = bottomEyelid.animate(
     [{ transform: "translateY(-100%)" }, { transform: "translateY(0)" }],
     {
@@ -26,6 +29,7 @@ const bottomEyelidAnim = bottomEyelid.animate(
         direction: "normal",
     }
 );
+bottomEyelidAnim.pause();
 
 function randomizeEyelidClose() {
     // Pick a random value from 5 to 10 seconds
@@ -75,9 +79,6 @@ function startTimer() {
     }, 1000);
 }
 
-// To be removed once main menu is added
-startTimer();
-
 topEyelidAnim.onfinish = () => {
     stopTimer();
     endTime.textContent = stopwatch.textContent;
@@ -87,12 +88,16 @@ topEyelidAnim.onfinish = () => {
 };
 
 function startNewGame() {
+    titleScreen.style.display = "none";
     gameScreen.style.display = "block";
     endScreen.style.display = "none";
 
     startTimer();
     randomizeBtnPos();
     randomizeEyelidClose();
+
+    topEyelidAnim.play();
+    bottomEyelidAnim.play();
 }
 
 for (const btn of document.getElementsByClassName("new-game-btn")) {
