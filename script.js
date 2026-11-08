@@ -3,9 +3,6 @@ const wakeUpBtn = document.getElementById("wake-up-btn");
 let xLimit = window.innerWidth - wakeUpBtn.getBoundingClientRect().width;
 let yLimit = window.innerHeight - wakeUpBtn.getBoundingClientRect().height;
 
-const timeText = document.getElementById("time-left");
-let timeLeft = 5;
-
 const topEyelid = document.querySelector(".eyelid-top");
 const bottomEyelid = document.querySelector(".eyelid-bottom");
 
@@ -31,9 +28,6 @@ wakeUpBtn.addEventListener("pointerdown", () => {
     wakeUpBtn.style.left = `${newX}px`;
     wakeUpBtn.style.top = `${newY}px`;
 
-    timeLeft = 5;
-    timeText.textContent = timeLeft;
-
     topEyelidAnim.currentTime = 0;
     bottomEyelidAnim.currentTime = 0;
 });
@@ -41,12 +35,6 @@ wakeUpBtn.addEventListener("pointerdown", () => {
 const endScreen = document.getElementById("end-screen");
 endScreen.style.display = "none";
 
-const timer = setInterval(() => {
-    timeLeft--;
-    timeText.textContent = timeLeft;
-
-    if (timeLeft <= 0) { 
-        clearInterval(timer);
-        endScreen.style.display = "block";
-    }
-}, 1000)
+topEyelidAnim.onfinish = () => {
+    endScreen.style.display = "block";
+};
