@@ -10,3 +10,13 @@ wakeUpBtn.addEventListener("pointerdown", () => {
     wakeUpBtn.style.left = `${newX}px`;
     wakeUpBtn.style.top = `${newY}px`;
 });
+
+const timeText = document.getElementById("time-left");
+let timeLeft = 5;
+
+const timer = setInterval(() => {
+    timeLeft--;
+    timeText.textContent = timeLeft;
+
+    if (timeLeft <= 0) clearInterval(timer);
+}, 1000)
