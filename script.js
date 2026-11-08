@@ -32,9 +32,35 @@ wakeUpBtn.addEventListener("pointerdown", () => {
     bottomEyelidAnim.currentTime = 0;
 });
 
+const stopwatch = document.getElementById("stopwatch");
+let gameTimer = null;
+
+function stopTimer() {
+    clearInterval(gameTimer);
+    gameTimer = null;
+};
+
+function startTimer() {
+    let startTime = Date.now();
+    let currentTime = 0;
+
+    gameTimer = setInterval(() => {
+        currentTime = Date.now() - startTime;
+
+        const seconds = Math.trunc(currentTime / 1000 % 60);
+        const minutes = Math.trunc(currentTime / 60000 % 60);
+        const hours = Math.trunc(currentTime / 3600000);
+
+        stopwatch.textContent = `${`${hours}`.padStart(2, "0")}:${`${minutes}`.padStart(2, "0")}:${`${seconds}`.padStart(2, "0")}`;
+    }, 1000);
+}
+
+startTimer();
+
 const endScreen = document.getElementById("end-screen");
 endScreen.style.display = "none";
 
 topEyelidAnim.onfinish = () => {
     endScreen.style.display = "block";
+    stopTimer();
 };
