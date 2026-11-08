@@ -2,12 +2,10 @@ const titleScreen = document.getElementById("title-screen");
 const gameScreen = document.getElementById("game-screen");
 const endScreen = document.getElementById("end-screen");
 
-titleScreen.style.display = "block";
-
 const wakeUpBtn = document.getElementById("wake-up-btn");
 
-let xLimit = window.innerWidth - wakeUpBtn.getBoundingClientRect().width;
-let yLimit = window.innerHeight - wakeUpBtn.getBoundingClientRect().height;
+let xLimit;
+let yLimit;
 
 const topEyelid = document.querySelector(".eyelid-top");
 const bottomEyelid = document.querySelector(".eyelid-bottom");
@@ -39,6 +37,11 @@ function randomizeEyelidClose() {
     topEyelidAnim.effect.updateTiming({ duration: closingMs });
     bottomEyelidAnim.currentTime = 0;
     bottomEyelidAnim.effect.updateTiming({ duration: closingMs });
+}
+
+function recalculateBtnBounds() {
+    xLimit = Math.max(window.innerWidth - wakeUpBtn.getBoundingClientRect().width, 0);
+    yLimit = Math.max(window.innerHeight - wakeUpBtn.getBoundingClientRect().height, 0);
 }
 
 function randomizeBtnPos() {
@@ -103,3 +106,15 @@ function startNewGame() {
 for (const btn of document.getElementsByClassName("new-game-btn")) {
     btn.addEventListener("pointerdown", startNewGame);
 }
+
+window.addEventListener("resize", () => {
+    recalculateBtnBounds();
+
+    if (wakeUpBtn.getBoundingClientRect().x > xLimit) wakeUpBtn.style.left = `${xLimit}px`;
+    if (wakeUpBtn.getBoundingClientRect().y > yLimit) wakeUpBtn.style.left = `${yLimit}px`;
+});
+
+// Calculate button boundaries before hiding screens, since the width and height of a hidden element is 0
+recalculateBtnBounds();
+gameScreen.style.display = "none";
+endScreen.style.display = "none";

@@ -4,6 +4,10 @@
     padding: 0;
 }
 
+:root {
+    --btn-color: #85afeb;
+}
+
 body {
     width: 100vw;
     height: 100vh;
@@ -15,13 +19,31 @@ body {
     height: 100%;
 
     position: absolute;
-    display: none;
 }
 
 #wake-up-btn {
+    display: grid;
+    place-items: center;
+    font-size: 75px;
+
     position: absolute;
     left: 0;
     top: 0;
+
+    background-color: transparent;
+    border: none;
+    color: var(--btn-color);
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+
+    width: 1.2em;
+    height: 0.95em;
+    text-indent: -0.1em;
+
+    & i {
+        display: inline-block;
+        line-height: 0;
+    }
 }
 
 .eyelid {
