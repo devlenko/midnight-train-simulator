@@ -21,6 +21,16 @@ const bottomEyelidAnim = bottomEyelid.animate(
     }
 );
 
+function randomizeEyelidClose() {
+    // Pick a random value from 5 to 10 seconds
+    const closingMs = Math.floor(Math.random() * 6 + 5) * 1000;
+
+    topEyelidAnim.currentTime = 0;
+    topEyelidAnim.effect.updateTiming({ duration: closingMs });
+    bottomEyelidAnim.currentTime = 0;
+    bottomEyelidAnim.effect.updateTiming({ duration: closingMs });
+}
+
 wakeUpBtn.addEventListener("pointerdown", () => {
     const newX = Math.floor(Math.random() * (xLimit + 1));
     const newY = Math.floor(Math.random() * (yLimit + 1));
@@ -28,8 +38,7 @@ wakeUpBtn.addEventListener("pointerdown", () => {
     wakeUpBtn.style.left = `${newX}px`;
     wakeUpBtn.style.top = `${newY}px`;
 
-    topEyelidAnim.currentTime = 0;
-    bottomEyelidAnim.currentTime = 0;
+    randomizeEyelidClose();
 });
 
 const stopwatch = document.getElementById("stopwatch");
