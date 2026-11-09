@@ -10,6 +10,9 @@ let yLimit;
 const topEyelid = document.querySelector(".eyelid-top");
 const bottomEyelid = document.querySelector(".eyelid-bottom");
 
+const bgAmbience = new Audio("https://cdn.pixabay.com/audio/2022/02/07/audio_b54c91527e.mp3");
+bgAmbience.loop = true;
+
 const endTime = document.getElementById("end-time");
 
 const topEyelidAnim = topEyelid.animate(
@@ -88,6 +91,9 @@ topEyelidAnim.onfinish = () => {
     
     gameScreen.style.display = "none";
     endScreen.style.display = "flex";
+
+    bgAmbience.pause();
+    bgAmbience.currentTime = Math.floor(Math.random() * Math.trunc(bgAmbience.duration));
 };
 
 function startNewGame() {
@@ -101,6 +107,8 @@ function startNewGame() {
 
     topEyelidAnim.play();
     bottomEyelidAnim.play();
+
+    bgAmbience.play();
 }
 
 for (const btn of document.getElementsByClassName("new-game-btn")) {
