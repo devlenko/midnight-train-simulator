@@ -25,6 +25,74 @@ body {
     overflow: hidden;
 }
 
+/* TITLE AND END SCREENS */
+
+#title-screen,
+#end-screen,
+.end-group {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+
+    background-color: black;
+    color: white;
+    font-family: 'Roboto Serif', 'Times New Roman', Times, serif;
+}
+
+#end-screen {
+    gap: 5rem;
+}
+
+.new-game-btn {
+    width: 20rem;
+    height: 4rem;
+    margin-top: 3rem;
+
+    background-color: var(--btn-color);
+    color: black;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+
+    font-family: 'Roboto Serif', 'Times New Roman', Times, serif;
+    font-size: 2rem;
+    font-weight: bold;
+
+    user-select: none;
+    -webkit-user-select: none; /* Safari */
+
+    scale: 1.0;
+    transition: scale 0.5s ease;
+
+    &:hover {
+        scale: 1.1;
+    }
+}
+
+h1 {
+    font-weight: bold;
+    font-size: 4rem;
+}
+
+h2 {
+    font-weight: bold;
+    font-size: 3rem;
+}
+
+p {
+    font-size: 1.5rem;
+}
+
+#end-time {
+    font-size: 5rem;
+    font-family: 'Bitcount Grid Single', 'Courier New', Courier, monospace;
+    color: var(--board-color);
+}
+
+/* GAME SCREEN */
+
 #game-screen {
     background-image: radial-gradient(circle at center, #161920c6, #2d3643c6), url('https://images.pexels.com/photos/10533148/pexels-photo-10533148.jpeg');
     background-position: center;
@@ -123,8 +191,4 @@ th {
 .eyelid-bottom {
     bottom: 0;
     rotate: 180deg;
-}
-
-#end-time {
-    display: block;
 }

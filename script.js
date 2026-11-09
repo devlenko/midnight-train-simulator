@@ -30,8 +30,8 @@ const bottomEyelidAnim = bottomEyelid.animate(
 bottomEyelidAnim.pause();
 
 function randomizeEyelidClose() {
-    // Pick a random value from 5 to 10 seconds
-    const closingMs = Math.floor(Math.random() * 6 + 5) * 1000;
+    // Pick a random value from 5 to 8 seconds
+    const closingMs = Math.floor(Math.random() * 4 + 5) * 1000;
 
     topEyelidAnim.currentTime = 0;
     topEyelidAnim.effect.updateTiming({ duration: closingMs });
@@ -87,7 +87,7 @@ topEyelidAnim.onfinish = () => {
     endTime.textContent = stopwatch.textContent;
     
     gameScreen.style.display = "none";
-    endScreen.style.display = "block";
+    endScreen.style.display = "flex";
 };
 
 function startNewGame() {
