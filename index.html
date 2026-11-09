@@ -19,10 +19,50 @@
     </div>
 
     <div id="game-screen" class="screen">
+        <table aria-hidden="true" role="presentation">
+            <thead>
+                <tr>
+                    <th colspan="2" class="board-larger">Departures</th>
+                    <th colspan="2" class="board-larger"><span id="stopwatch">00:00:00</span></th>
+                </tr>
+                <tr>
+                    <th>Time</th>
+                    <th>Platform</th>
+                    <th>Information</th>
+                    <th>Destination</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>12:00 AM</td>
+                    <td class="empty-data">-</td>
+                    <td>Please Wait</td>
+                    <td>Nowhere</td>
+                </tr>
+                <tr>
+                    <td class="empty-data">-</td>
+                    <td class="empty-data">-</td>
+                    <td class="empty-data">-</td>
+                    <td class="empty-data">-</td>
+                </tr>
+                <tr>
+                    <td class="empty-data">-</td>
+                    <td class="empty-data">-</td>
+                    <td class="empty-data">-</td>
+                    <td class="empty-data">-</td>
+                </tr>
+                <tr>
+                    <td class="empty-data">-</td>
+                    <td class="empty-data">-</td>
+                    <td class="empty-data">-</td>
+                    <td class="empty-data">-</td>
+                </tr>
+            </tbody>
+        </table>
+
         <div class="eyelid eyelid-top"></div>
         <div class="eyelid eyelid-bottom"></div>
 
-        <span id="stopwatch">00:00:00</span>
         <button type="button" id="wake-up-btn">
             <i class="fa-solid fa-eye"></i>
         </button>

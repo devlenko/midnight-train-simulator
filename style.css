@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Bitcount+Grid+Single:wght@100..900&family=Roboto+Serif:ital,opsz,wght@0,8..144,100..900;1,8..144,100..900&display=swap');
+
 *, *::before, *::after {
     box-sizing: border-box;
     margin: 0;
@@ -6,6 +8,7 @@
 
 :root {
     --btn-color: #85afeb;
+    --board-color: orange;
 }
 
 body {
@@ -19,6 +22,68 @@ body {
     height: 100%;
 
     position: absolute;
+    overflow: hidden;
+}
+
+#game-screen {
+    background-image: radial-gradient(circle at center, #161920c6, #2d3643c6), url('https://images.pexels.com/photos/10533148/pexels-photo-10533148.jpeg');
+    background-position: center;
+    background-size: cover;
+
+    user-select: none;
+    -webkit-user-select: none; /* Safari */
+}
+
+table {
+    font-family: 'Bitcount Grid Single', 'Courier New', Courier, monospace;
+    color: var(--board-color);
+    border-radius: 10px;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+
+    table-layout: fixed;
+    border-collapse: collapse;
+
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    z-index: 0;
+
+    @media screen and (max-width: 1000px) {
+        margin: auto 15px;
+    }
+}
+
+th, td {
+    background-color: black;
+    font-weight: normal;
+    font-size: 2rem;
+
+    width: 250px;
+    padding: 0.5rem 1rem;
+    border: none;
+    white-space: nowrap;
+
+    @media screen and (max-width: 1000px) {
+        font-size: 0.8rem;
+        padding: 0.45rem;
+    }
+}
+
+th {
+    text-transform: uppercase;
+}
+
+.board-larger {
+    font-size: 4rem;
+
+    @media screen and (max-width: 1000px) {
+        font-size: 1.5rem;
+    }
+}
+
+.empty-data {
+    text-align: center;
 }
 
 #wake-up-btn {
@@ -29,11 +94,12 @@ body {
     position: absolute;
     left: 0;
     top: 0;
+    z-index: 1;
 
     background-color: transparent;
     border: none;
     color: var(--btn-color);
-    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    text-shadow: 0 0 20px rgba(0, 0, 0, 0.85);
     cursor: pointer;
 
     width: 1.2em;
@@ -50,7 +116,6 @@ body {
     width: 100vw;
     height: 65vh;
     position: absolute;
-    z-index: -1;
 
     background-image: radial-gradient(ellipse max(2000px, 140vw) 20vh at bottom, transparent 50%, rgba(0, 0, 0, 0.8) 65%, black 75%);
 }
@@ -62,9 +127,4 @@ body {
 
 #end-time {
     display: block;
-}
-
-/* Temporary */
-#stopwatch {
-    color: white;
 }
